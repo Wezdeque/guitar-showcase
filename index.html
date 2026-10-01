@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>GUITAR SHOWCASE by WZDQ & Andrew Jester</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #030304;
+            --bg-card: rgba(8, 8, 11, 0.85);
+            --neon-red: #ff1a40;
+            --neon-red-glow: rgba(255, 26, 64, 0.6);
+            --text-main: #f0f4f8;
+            --text-muted: #8b9bb4;
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+       body {
+            background-color: #030304;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            font-size: 18px;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(180, 0, 40, 0.16) 0%, transparent 40%),
+                radial-gradient(circle at 90% 70%, rgba(120, 0, 25, 0.12) 0%, transparent 45%),
+                linear-gradient(180deg, #050507 0%, #020203 100%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Header / Nav --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+            background: rgba(10, 11, 16, 0.75);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+       .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #fff;
+            text-shadow: 0 0 12px var(--neon-red-glow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--neon-red);
+            text-shadow: 0 0 12px var(--neon-red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--neon-red);
+            text-shadow: 0 0 8px var(--neon-red);
+        }
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(220, 0, 45, 0.2) 0%, rgba(80, 0, 15, 0.08) 50%, transparent 70%);
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(90px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+        }
+
+        .tagline-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 4px;
+            background: rgba(255, 0, 85, 0.15);
+            border: 1px solid var(--neon-pink);
+            color: var(--neon-pink);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.2);
+        }
+
+        h1.hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            line-height: 1.05;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        h1.hero-title .glow-red {
+            color: var(--neon-red);
+            text-shadow: 0 0 25px var(--neon-red-glow);
+        }
+
+        p.hero-desc {
+            font-size: 1.35rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 14px 32px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #050508;
+            border: 1px solid #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+            font-weight: 800;
+        }
+
+        .btn-primary:hover {
+            background: #f0f0f5;
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(12, 12, 16, 0.85);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* --- Section Common --- */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            color: var(--neon-red);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* --- About Grid --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 8px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff1a40, #99001a);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 26, 64, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--neon-red);
+        }
+
+        .glass-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .glass-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* --- Videos Section --- */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .video-card:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.25);
+            transform: scale(1.02);
+        }
+
+        .video-thumb-wrapper {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #151722;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-thumb-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+            transition: 0.4s ease;
+        }
+
+        .video-card:hover .video-thumb-preview {
+            filter: brightness(1);
+            transform: scale(1.05);
+        }
+
+       .play-btn-circle {
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 2;
+        }
+
+        .play-btn-circle svg {
+            width: 26px;
+            height: 26px;
+            fill: #050508;
+            margin-left: 4px;
+        }
+
+        .video-card:hover .play-btn-circle {
+            transform: scale(1.15);
+            background: #ffffff;
+            box-shadow: 0 0 45px rgba(255, 255, 255, 0.9);
+        }
+        .video-card:hover .play-btn-circle {
+            transform: scale(1.15);
+            background: var(--neon-pink);
+        }
+
+        .video-info {
+            padding: 22px;
+        }
+
+        .video-tag {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            color: var(--neon-red);
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .video-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #111420;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 11, 16, 0.9) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* --- Booking Section --- */
+        .booking-box {
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.1), rgba(0, 243, 255, 0.05));
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 12px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .booking-title {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .booking-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* --- Modal for Video --- */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 950px;
+            background: #000;
+            border-radius: 8px;
+            border: 1px solid var(--neon-red);
+            box-shadow: 0 0 50px rgba(255, 26, 64, 0.4);
+            overflow: hidden;
+        }
+
+        .modal-video-player {
+            width: 100%;
+            display: block;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            color: #fff;
+            font-size: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-display);
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--neon-pink);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            /* Скрываем обычное меню в шапке */
+            nav ul {
+                display: none;
+            }
+
+            /* Уменьшаем отступы и высоту шапки */
+            .nav-content {
+                height: 65px;
+            }
+
+            .logo {
+                font-size: 1.15rem;
+                letter-spacing: 1.5px;
+            }
+
+            /* Подгоняем Hero-секцию под экран телефона */
+            .hero {
+                min-height: auto;
+                padding-top: 90px;
+                padding-bottom: 50px;
+            }
+
+            .tagline-badge {
+                font-size: 0.7rem;
+                letter-spacing: 1.5px;
+                padding: 5px 12px;
+                margin-bottom: 16px;
+            }
+
+            /* Идеальный размер шрифта под экран смартфона без разрыва слов */
+            h1.hero-title {
+                font-size: 1.85rem;
+                line-height: 1.2;
+                letter-spacing: 0.5px;
+                margin-bottom: 18px;
+                word-break: normal;
+                hyphens: none;
+            }
+
+            p.hero-desc {
+                font-size: 1.05rem;
+                line-height: 1.5;
+                margin-bottom: 28px;
+            }
+
+            /* Кнопки делаем на всю ширину для удобного нажатия пальцем */
+            .cta-group {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .cta-group .btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 0.9rem;
+            }
+
+            /* Сетки под одну колонку */
+            .video-grid, 
+            .about-grid, 
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-content">
+            <div class="logo">GUITAR <span>SHOWCASE</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#about">Концепт</a></li>
+                    <li><a href="#video">Видео</a></li>
+                    <li><a href="#gallery">Фото</a></li>
+                    <li><a href="#booking">Букинг</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="container hero-content">
+            <div class="tagline-badge">WZDQ & Andrew Jester</div>
+            <h1 class="hero-title">
+    Мультижанровый <br>
+    DJ-сет <br>
+    <span class="glow-red">с живой гитарой</span>
+</h1>
+            <p class="hero-desc">
+                Зрелищное live-выступление, где музыка сочетается с живым инструментом, создавая динамичную и неповторимую атмосферу.
+            </p>
+            <div class="cta-group">
+                <a href="#video" class="btn btn-primary">Смотреть лайв</a>
+                <a href="#booking" class="btn btn-secondary">Забронировать дату</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Формат шоу</div>
+                <h2 class="section-title">О проекте</h2>
+            </div>
+            <div class="about-grid">
+               <div class="glass-card">
+    <div class="card-icon">⚡</div>
+    <h3>Гибридный лайв</h3>
+    <p>Лайв сет с гитарой, в котором треки дополняются мощными риффами и новыми грувом, создавая уникальную атмосферу.</p>
+</div>
+                <div class="glass-card">
+                    <div class="card-icon">🎛️</div>
+                    <h3>Мультжанровый сет</h3>
+                    <p>Смешение жанров: от хип-хопа до электроники и других направлений. И все это в одном сете</p>
+                </div>
+                <div class="glass-card">
+                    <div class="card-icon">🔥</div>
+                    <h3>Контакт с залом</h3>
+                    <p>Зрители взаимодействуют с артистами и чувствуют себя частью выступления.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Videos Section -->
+    <section id="video">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Live Performance</div>
+                <h2 class="section-title">Видео с выступлений</h2>
+            </div>
+
+            <div class="video-grid">
+                <!-- Карточка 1: Carti -->
+                <div class="video-card" onclick="openVideoPlayer('https://vk.ru/video_ext.php?oid=-171743290&id=456239059')">
+                    <div class="video-thumb-wrapper">
+                        <img src="images/photo1.jpg" class="video-thumb-preview" alt="Playboi Carti Pop Out with guitar">
+                        <div class="play-btn-circle">
+                            <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-tag">Flora Live Set</div>
+                        <h4 class="video-title">Playboi Carti - Pop Out with guitar</h4>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Трек Playboi Carti в новом звучании с гитарой.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 2: Voskresenskii -->
+                <div class="video-card" onclick="openVideoPlayer('https://vk.ru/video_ext.php?oid=-171743290&id=456239060')">
+                    <div class="video-thumb-wrapper">
+                        <img src="images/photo2.jpg" class="video-thumb-preview" alt="Voskresenskii Стиралка with guitar">
+                        <div class="play-btn-circle">
+                            <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-tag">Flora Live Set</div>
+                        <h4 class="video-title">Voskresenskii - Стиралка with guitar</h4>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Трек Воскресенского в новом звучании с гитарой.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Photos</div>
+                <h2 class="section-title">Галерея</h2>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/photo1.jpg" alt="Guitar Showcase Live Stage">
+                    <div class="gallery-overlay"><span>Andrew Jester</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/photo2.jpg" alt="Live Guitar Solo">
+                    <div class="gallery-overlay"><span>WZDQ</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/photo3.jpg" alt="DJ & Hybrid Setup">
+                    <div class="gallery-overlay"><span>Flora in Simple Music</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/photo4.jpg" alt="Crowd & Atmosphere">
+                    <div class="gallery-overlay"><span>Flora in Dvor Kulturi</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking -->
+    <section id="booking">
+        <div class="container">
+            <div class="booking-box">
+                <h2 class="booking-title">BOOKING</h2>
+                <p style="color: var(--text-muted); font-size: 1.15rem;">
+                    Мультижанровый live-сет с живой гитарой для клубов, фестивалей и частных мероприятий. Связь по вопросам выступлений — ниже.
+                </p>
+                <div class="booking-socials">
+                    <a href="https://t.me/wezdeque" target="_blank" class="btn btn-primary">Написать в Telegram</a>
+                    <a href="mailto:wezdeque@gmail.com" class="btn btn-secondary">wezdeque@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    <div class="container">
+        &copy; 2026 GUITAR SHOWCASE. All rights reserved.
+    </div>
+</footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal" onclick="closeVideoModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeVideoModal()">&times;</button>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <iframe id="modalIframe" src="" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const videoModal = document.getElementById('videoModal');
+        const modalIframe = document.getElementById('modalIframe');
+
+        function openVideoPlayer(vkEmbedUrl) {
+            const separator = vkEmbedUrl.includes('?') ? '&' : '?';
+            modalIframe.src = vkEmbedUrl + separator + 'autoplay=1';
+            videoModal.classList.add('active');
+        }
+
+        function closeVideoModal() {
+            videoModal.classList.remove('active');
+            modalIframe.src = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeVideoModal();
+            }
+        });
+    </script>
+</body>
+</html>
